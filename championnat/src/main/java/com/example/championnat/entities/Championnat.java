@@ -22,5 +22,6 @@ public class Championnat {
 //    liste des equipe
     //classemet
     //calendrier des match
+    @Enumerated(EnumType.STRING)
     private TypeChampionnat typeChampionnat;
 }
