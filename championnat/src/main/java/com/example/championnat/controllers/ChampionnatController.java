@@ -1,6 +1,7 @@
 package com.example.championnat.controllers;
 
 import com.example.championnat.entitiesDto.ChampionnatDto;
+import com.example.championnat.exceptions.NotFoundException;
 import com.example.championnat.services.IChampionnatService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,7 +21,7 @@ public class ChampionnatController {
         return new ResponseEntity<>(championnatDtos, HttpStatus.OK);
     }
     @GetMapping("/by-id/{id}")
-    public ResponseEntity<ChampionnatDto> getChampionnatById(@PathVariable Long id){
+    public ResponseEntity<ChampionnatDto> getChampionnatById(@PathVariable Long id) throws NotFoundException {
         ChampionnatDto championnatDto = championnatService.getChampionnatById(id);
         return new ResponseEntity<>(championnatDto,HttpStatus.OK);
     }
@@ -35,7 +36,7 @@ public class ChampionnatController {
         return new ResponseEntity<>(createChampionnatDtoList,HttpStatus.CREATED);
     }
     @PutMapping("/update/{id}")
-    public ResponseEntity<ChampionnatDto> updateChampionnat(@PathVariable Long id, @RequestBody ChampionnatDto championnatDto){
+    public ResponseEntity<ChampionnatDto> updateChampionnat(@PathVariable Long id, @RequestBody ChampionnatDto championnatDto) throws NotFoundException {
         ChampionnatDto updateChampionnatDto = championnatService.updateChampionnat(id, championnatDto);
         return new ResponseEntity<>(updateChampionnatDto,HttpStatus.OK);
     }
