@@ -2,6 +2,7 @@ package com.example.championnat.services.impl;
 
 import com.example.championnat.entities.Championnat;
 import com.example.championnat.entitiesDto.ChampionnatDto;
+import com.example.championnat.exceptions.NotFoundException;
 import com.example.championnat.repositories.IChampionnatRepository;
 import com.example.championnat.services.IChampionnatService;
 import com.example.championnat.transformers.ChampionnatTransformer;
@@ -19,9 +20,13 @@ public class ChampionnatService implements IChampionnatService {
         List<Championnat> championnats = championnatRepository.findAll();
         return ChampionnatTransformer.entityToDtoList(championnats);
     }
-    public ChampionnatDto getChampionnatById(Long id){
+    public ChampionnatDto getChampionnatById(Long id) throws NotFoundException {
         Championnat championnat = championnatRepository.findById(id).orElse(null);
-        return ChampionnatTransformer.entityToDto(championnat);
+        if(championnat != null) {
+            return ChampionnatTransformer.entityToDto(championnat);
+        }else {
+            throw new NotFoundException("Il n y a pas de championnat avec l id : "+ id);
+        }
     }
     public ChampionnatDto saveChampionnat(ChampionnatDto championnatDto){
         Championnat championnat = ChampionnatTransformer.dtoToEntity(championnatDto);
@@ -33,7 +38,7 @@ public class ChampionnatService implements IChampionnatService {
         championnatRepository.saveAll(championnats);
         return ChampionnatTransformer.entityToDtoList(championnats);
     }
-    public ChampionnatDto updateChampionnat(Long id,ChampionnatDto championnatDto){
+    public ChampionnatDto updateChampionnat(Long id,ChampionnatDto championnatDto) throws NotFoundException {
         Championnat championnat = championnatRepository.findById(id).orElse(null);
         if(championnat != null){
             championnat.setTypeChampionnat(championnatDto.getTypeChampionnat());
@@ -44,7 +49,7 @@ public class ChampionnatService implements IChampionnatService {
 
             return ChampionnatTransformer.entityToDto(championnat);
         }else {
-            return null;
+            throw new NotFoundException("Il n y a pas de championnat avec l id : "+ id);
         }
     }
     public void deleteChampionnat(Long id){

@@ -1,6 +1,7 @@
 package com.example.championnat.entitiesDto;
 
 import com.example.championnat.entities.enums.TypeChampionnat;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
