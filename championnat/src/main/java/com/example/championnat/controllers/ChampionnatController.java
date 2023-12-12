@@ -3,6 +3,7 @@ package com.example.championnat.controllers;
 import com.example.championnat.entitiesDto.ChampionnatDto;
 import com.example.championnat.exceptions.NotFoundException;
 import com.example.championnat.services.IChampionnatService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,17 +27,17 @@ public class ChampionnatController {
         return new ResponseEntity<>(championnatDto,HttpStatus.OK);
     }
     @PostMapping("/save")
-    public ResponseEntity<ChampionnatDto> saveChampionnat(@RequestBody ChampionnatDto championnatDto){
+    public ResponseEntity<ChampionnatDto> saveChampionnat(@RequestBody @Valid ChampionnatDto championnatDto){
         ChampionnatDto createChampionnatDto = championnatService.saveChampionnat(championnatDto);
         return new ResponseEntity<>(createChampionnatDto,HttpStatus.CREATED);
     }
     @PostMapping("/saveList")
-    public ResponseEntity<List<ChampionnatDto>> saveListChampionnat(@RequestBody List<ChampionnatDto> championnatDtos){
+    public ResponseEntity<List<ChampionnatDto>> saveListChampionnat(@RequestBody @Valid List<ChampionnatDto> championnatDtos){
         List<ChampionnatDto> createChampionnatDtoList = championnatService.saveListChampionnat(championnatDtos);
         return new ResponseEntity<>(createChampionnatDtoList,HttpStatus.CREATED);
     }
     @PutMapping("/update/{id}")
-    public ResponseEntity<ChampionnatDto> updateChampionnat(@PathVariable Long id, @RequestBody ChampionnatDto championnatDto) throws NotFoundException {
+    public ResponseEntity<ChampionnatDto> updateChampionnat(@PathVariable Long id, @RequestBody @Valid ChampionnatDto championnatDto) throws NotFoundException {
         ChampionnatDto updateChampionnatDto = championnatService.updateChampionnat(id, championnatDto);
         return new ResponseEntity<>(updateChampionnatDto,HttpStatus.OK);
     }
