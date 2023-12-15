@@ -54,6 +54,7 @@ public class ChampionnatService implements IChampionnatService {
             championnat.setDateFinChampionnat(championnatDto.getDateFinChampionnat());
             championnat.setSaison(championnatDto.getSaison());
 
+            championnatRepository.save(championnat);
             log.info("le championnat est mis a jour "+ championnat);
             return ChampionnatTransformer.entityToDto(championnat);
         }else {
