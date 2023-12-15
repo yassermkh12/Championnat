@@ -50,6 +50,8 @@ public class EquipeService {
             equipe.setBudgetEquipe(equipeDto.getBudgetEquipe());
             equipe.setAnneFondation(equipeDto.getAnneFondation());
 
+            equipeRepository.save(equipe);
+
             return EquipeTransformer.entityToDto(equipe);
         }else {
             throw new NotFoundException("il n y a pas d equipe avec id : "+ id);
