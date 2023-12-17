@@ -26,6 +26,7 @@ public class Equipe {
     //relation sponsor
     //relation palmares
     //relation efictif actuel
-    private String budgetEquipe;
+    private Long budgetEquipe;
+    @Enumerated(value = EnumType.STRING)
     private StatusEquipe statusEquipe;
 }
