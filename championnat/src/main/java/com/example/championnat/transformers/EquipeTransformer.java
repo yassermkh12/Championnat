@@ -14,6 +14,7 @@ public class EquipeTransformer {
         equipeDto.setPaysEquipe(equipe.getPaysEquipe());
         equipeDto.setStatusEquipe(equipe.getStatusEquipe());
         equipeDto.setAnneFondation(equipe.getAnneFondation());
+        equipeDto.setChampionnatDto(ChampionnatTransformer.entityToDto(equipe.getChampionnat()));
 
         return equipeDto;
     }
@@ -25,6 +26,7 @@ public class EquipeTransformer {
         equipe.setPaysEquipe(equipeDto.getPaysEquipe());
         equipe.setNomEquipe(equipeDto.getNomEquipe());
         equipe.setAnneFondation(equipeDto.getAnneFondation());
+        equipe.setChampionnat(ChampionnatTransformer.dtoToEntity(equipeDto.getChampionnatDto()));
 
         return equipe;
     }

@@ -39,4 +39,5 @@ public class EquipeDto {
 //    @NotEmpty(message = "le champ ne doit pas etre vide")
     private Long budgetEquipe;
     private StatusEquipe statusEquipe;
+    private ChampionnatDto championnatDto;
 }

@@ -1,5 +1,6 @@
 package com.example.championnat.entitiesDto;
 
+import com.example.championnat.entities.Equipe;
 import com.example.championnat.entities.enums.TypeChampionnat;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
@@ -8,6 +9,8 @@ import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -34,4 +37,5 @@ public class ChampionnatDto {
     @Pattern(regexp = "^\\d{2}-\\d{2}-\\d{4}$", message = "la date doit suivre le format suivant jj-mm-aa")
     private String dateFinChampionnat;
     private TypeChampionnat typeChampionnat;
+//    private List<EquipeDto> equipes;
 }
