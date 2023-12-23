@@ -2,13 +2,14 @@ package com.example.championnat.entities;
 
 import com.example.championnat.entities.enums.TypeChampionnat;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+
+import java.util.*;
 
 @Entity
 @Table(name = "championnat")
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class Championnat {
@@ -24,4 +25,6 @@ public class Championnat {
     //calendrier des match
     @Enumerated(EnumType.STRING)
     private TypeChampionnat typeChampionnat;
+    @OneToMany(mappedBy = "championnat", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Equipe> equipes;
 }
