@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.*;
 @Slf4j
 @Service
-public class EquipeService {
+public class EquipeService implements IEquipeService {
     @Autowired
     private IEquipeRepository equipeRepository;
 
