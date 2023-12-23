@@ -2,6 +2,7 @@ package com.example.championnat.controllers;
 
 import com.example.championnat.entitiesDto.EquipeDto;
 import com.example.championnat.exceptions.NotFoundException;
+import com.example.championnat.services.IEquipeService;
 import com.example.championnat.services.impl.EquipeService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,7 @@ import java.util.*;
 @RequestMapping("/api/equipe")
 public class EquipeController {
     @Autowired
-    private EquipeService equipeService;
+    private IEquipeService equipeService;
     @GetMapping("/all")
     public ResponseEntity<List<EquipeDto>> getAllEquipe(){
         List<EquipeDto> equipeDto = equipeService.getAllEquipe();
